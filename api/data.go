@@ -1,5 +1,7 @@
 package main
 
+
+// Backinfo
 type BankInfo struct {
 	Bankleitzahl          string  `json:"bankleitzahl"`
 	Merkmal               float64 `json:"merkmal"`
