@@ -1,7 +1,6 @@
 package main
 
-
-// Backinfo test
+// Backinfo testing
 type BankInfo struct {
 	Bankleitzahl          string  `json:"bankleitzahl"`
 	Merkmal               float64 `json:"merkmal"`
@@ -17,5 +16,3 @@ type BankInfo struct {
 	Bankleitzahlloeschung string  `json:"bankleitzahlloeschung"`
 	Nachfolgebankleitzahl string  `json:"nachfolgebankleitzahl"`
 }
-
-
