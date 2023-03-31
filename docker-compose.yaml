@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  db:
+    image: kasidev/bank-info-db
+    container_name: db
+    restart: always
+#    ports:
+#      - 3306:3306
+  app:
+    image: kasidev/bank-info
+    container_name: app
+    restart: always
+    environment:
+      DBHOST: db
+      DBPORT: 3306
+    ports:
+      - 9060:9060
+    depends_on:
+      - db
