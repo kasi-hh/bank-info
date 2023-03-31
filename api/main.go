@@ -104,7 +104,7 @@ func decodeISO8859_1(s string) string {
 }
 func getBankInfo(w http.ResponseWriter, r *http.Request) {
 	bankleitzahl := chi.URLParam(r, "bankleitzahl")
-	if len(bankleitzahl) > 8 {
+	if len(bankleitzahl) > 12 {
 		bankleitzahl = bankleitzahl[4:12]
 	}
 	//dbConn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", Cfg.DbUser, Cfg.DbPass, Cfg.DbHost, Cfg.DbPort, Cfg.DbName)
@@ -138,6 +138,7 @@ func getBankInfo(w http.ResponseWriter, r *http.Request) {
 	// 	log.Println(bankInfo.Bankleitzahl, bankInfo.Bezeichnung, bankInfo)
 	bankInfo, ok := bankInfos[bankleitzahl]
 	if !ok {
+		log.Println("Bankleitzahl not found: ", bankleitzahl)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -148,7 +149,8 @@ func getBankInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, string(result))
+	log.Println("Bankleitzahl found: ", bankleitzahl, bankInfo)
 	// }
-	w.WriteHeader(http.StatusNotFound)
 }
