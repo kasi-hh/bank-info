@@ -7,7 +7,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
-	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/text/encoding/charmap"
 	"log"
 	"net/http"
